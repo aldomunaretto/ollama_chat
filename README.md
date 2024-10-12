@@ -21,11 +21,15 @@ const body = {
 ```
 
 ## Enlaces de Interes
-* https://ollama.com/
-* https://github.com/ollama/ollama
-* https://hub.docker.com/r/ollama/ollama
-* https://huggingface.co/
-
+* Ollama
+    * https://ollama.com/
+    * https://github.com/ollama/ollama
+    * https://hub.docker.com/r/ollama/ollama
+* Hugging Face
+    * https://huggingface.co/
+* Extensiones Visual Studio Code
+    * Continue: https://www.continue.dev/
+    * CodeGPT: https://codegpt.co/
 
 
 ## Contribuciones
