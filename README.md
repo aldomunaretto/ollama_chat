@@ -25,12 +25,21 @@ const body = {
     * https://ollama.com/
     * https://github.com/ollama/ollama
     * https://hub.docker.com/r/ollama/ollama
+* LM Studio
+    * https://lmstudio.ai/
+* AnythingLLM
+    * https://anythingllm.com/
 * Hugging Face
     * https://huggingface.co/
 * Extensiones Visual Studio Code
     * Continue: https://www.continue.dev/
     * CodeGPT: https://codegpt.co/
-
+ 
+## Otros Recursos
+* Pinokio (Instalación de Aplicaciones de IA)
+    * https://pinokio.computer/
+* Invoke (Plataforma para modelos de generación de imagenes)
+    * https://www.invoke.com/
 
 ## Contribuciones
 
