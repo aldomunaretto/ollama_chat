@@ -5,6 +5,34 @@ document.getElementById('user-input').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') sendMessage();
 });
 
+const fileDropZone = document.getElementById('file-drop-zone');
+const fileInput = document.getElementById('file-input');
+
+fileDropZone.addEventListener('click', () => fileInput.click());
+fileDropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    fileDropZone.classList.add('dragover');
+});
+fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
+fileDropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    fileDropZone.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+function handleFiles(files) {
+    for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const fileContent = e.target.result;
+            appendMessage(`File uploaded: ${file.name}`, 'user');
+            // Aquí puedes enviar el contenido del archivo a la API si es necesario
+        };
+        reader.readAsDataURL(file); // Puedes cambiar esto según el tipo de archivo
+    }
+}
+
 function sendMessage() {
     const inputField = document.getElementById('user-input');
     const message = inputField.value.trim();
@@ -13,11 +41,9 @@ function sendMessage() {
     appendMessage(message, 'user');
     inputField.value = '';
 
-    // Request Body if context is available
     const body = {
         model: 'llama3.1', // Replace with the model you are using in Ollama
         prompt: message,
-        // temperature: 0.7, // Optional parameter to control the randomness of the response
         stream: false
     };
 
@@ -25,7 +51,6 @@ function sendMessage() {
         body.context = context; // Include the context in the next call to the API
     }
 
-    // Call the API with the user message
     fetch('http://localhost:11434/api/generate', {
         method: 'POST',
         headers: {
@@ -36,7 +61,6 @@ function sendMessage() {
     .then(response => response.json())
     .then(data => {
         appendMessage(data.response, 'api');
-        // Store the new context for the next call to the API
         if (data.context) {
             context = data.context;
         }
